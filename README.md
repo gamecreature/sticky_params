@@ -113,7 +113,7 @@ In the controller the index action is implemented like this
 class UsersController < ApplicationController
 
 	def index
-		sticky_params.reset! if params[:reset]
+		sticky_params.clear! if params[:reset]
 
 		@order = sticky_params[:order]
 		@page = sticky_params[:page]
@@ -133,7 +133,7 @@ class ApplicationController < ActionController::Base
 	
 protected:
 	def sticky_params_reset
-		sticky_params.reset! if params[:reset]
+		sticky_params.clear! if params[:reset]
 	end
 end
 ```
