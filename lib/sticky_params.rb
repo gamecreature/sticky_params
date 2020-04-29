@@ -1,6 +1,7 @@
 require "sticky_params/version"
 require "sticky_params/railtie" if defined?(Rails)
 require "sticky_params/session_params"
+require "sticky_params/strong_session_params"
 
 # Sticky Parameters is a nice hack that allows the 'remembering' a given param
 # between page requests. When a param is supplied it is stored in a session.
