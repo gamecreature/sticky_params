@@ -12,10 +12,10 @@ class MyController < ApplicationController
 end
 ```
 
-## Releease 2.0.0
+## Release 2.0
 
-Release 2.0.0 converts hashes to ActionController::Parameters.
-This make using the of strong parameter permit constructs possible.
+Release 2.0 converts hashes to ActionController::Parameters.
+This make using the of strong parameter permit construct possible.
 
 To get the 1.0 behaviour, you can add the following to your ApplicationController.
 
@@ -88,15 +88,13 @@ This session variable is a hash and it uses a prefix for storing the variables.
 By default the prefix is "controller_action_"
 
 When retrieving a parameter from sticky_params it first tries to retrieve it from
-the normal params hash. When it's in the params hash, it stores the result in the
-sticky_params hash.
-If the parameter isn't in the normal params hash it does a lookup in the session hash.
+the normal parameters. When it's found in the parameters, it stores the result in the sticky_params storage.
+If the parameter isn't in the normal aparameters it does a lookup in the session hash.
 Pretty simple.
 
 ## Common Pattern
 
 A pattern I used often with sticky_params, is using a request parameter 'reset' .
-
 
 For example for a basic rest controller, I have an index action which shows all users.
 The list of users is sortable, searchable and paged. When selecting a user in this table
@@ -129,7 +127,7 @@ class UsersController < ApplicationController
 end
 ```
 
-For the lazy developer:
+For the lazy developers.
 you could force the reset parameter to always work in your application.
 
 ```ruby
