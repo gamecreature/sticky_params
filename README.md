@@ -1,7 +1,7 @@
 # StickyParams
 
 A little gem that automaticly remembers the request parameters between requests without hassle.
-For example for remembering the filtering and sorting of a list,  when switching to a detail screen and back.
+For example for remembering the filtering and sorting of a list, when switching to a detail screen and back.
 
 ```ruby
 class MyController < ApplicationController
@@ -12,10 +12,11 @@ class MyController < ApplicationController
 end
 ```
 
-## Release 2.0
+## Release Notes 2.0
 
-Release 2.0 converts hashes to ActionController::Parameters.
-This make using the of strong parameter permit construct possible.
+Release 2.0 uses ActionController::Parameters instead of hashes.
+This enable the usage of the strong parameter permit construct.
+(In other words, sticky_params will work just like normal params)
 
 To get the 1.0 behaviour, you can add the following to your ApplicationController.
 
@@ -36,7 +37,7 @@ gem 'sticky_params'
 And then execute:
 
 ```bash
-    $ bundle
+bundle
 ```
 
 ## Usage
