@@ -12,6 +12,19 @@ class MyController < ApplicationController
 end
 ```
 
+## Releease 2.0.0
+
+Release 2.0.0 converts hashes to ActionController::Parameters.
+This make using the of strong parameter permit constructs possible.
+
+To get the 1.0 behaviour, you can add the following to your ApplicationController.
+
+```ruby
+  def sticky_params
+    @sticky_params ||= ::StickyParams::SessionParams.new(self)
+  end
+```
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -121,7 +134,7 @@ you could force the reset parameter to always work in your application.
 
 ```ruby
 class ApplicationController < ActionController::Base
-  before_filter :sticky_params_reset
+  before_action :sticky_params_reset
 
 protected:
   def sticky_params_reset

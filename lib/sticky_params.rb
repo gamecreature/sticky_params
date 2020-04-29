@@ -18,6 +18,6 @@ module StickyParams
   # A sicky parameter is a parameter that 'keeps' it state between pages,
   # by storing the data in a session
   def sticky_params
-    @sticky_params ||= ::StickyParams::SessionParams.new(self)
+    @sticky_params ||= ::StickyParams::StrongSessionParams.new(self)
   end
 end
