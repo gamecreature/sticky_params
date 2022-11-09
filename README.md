@@ -12,9 +12,14 @@ class MyController < ApplicationController
 end
 ```
 
-## Release Notes 2.0
+## Release Notes 2.1
 
-Release 2.0 uses ActionController::Parameters instead of hashes.
+
+Release 2.1, Sticky Params doesn't put ActionController::Parameters in a sesssion anymore.
+ActionController::Parameters were put directly into a session in 2.0. Which worked in rails < 7.
+In rails 7 this results in a `TypeError (can't dump IO)` when the session data is serialized.
+
+Release 2.0, uses ActionController::Parameters instead of hashes.
 This enable the usage of the strong parameter permit construct.
 (In other words, sticky_params will work just like normal params)
 

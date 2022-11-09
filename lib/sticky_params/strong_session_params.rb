@@ -10,7 +10,12 @@ module StickyParams
 
     def fetch_from_params(name, session_param_name)
       if controller.params[name].present?
-        controller.session['sticky_params'][session_param_name] = controller.params[name]
+        if controller.params[name].is_a?(ActionController::Parameters)
+          controller.session['sticky_params'][session_param_name] = controller.params[name].to_unsafe_hash
+        else
+          controller.session['sticky_params'][session_param_name] = controller.params[name]
+        end
+        controller.params[name]
       else
         controller.session['sticky_params'].delete session_param_name
         nil
@@ -19,19 +24,13 @@ module StickyParams
 
     def fetch_from_session(session_param_name)
       result = controller.session['sticky_params'][session_param_name]
-
       # covert hash to action parameters for simulating a normal param
-      if result.is_a?(Hash)
-        result = ActionController::Parameters.new(result)
-        controller.session['sticky_params'][session_param_name] = result
-      end
-
-      result
+      result.is_a?(Hash) ? ActionController::Parameters.new(result) : result
     end
 
     def [](name)
       session_param_name = "#{prefix}#{name}"
-      controller.session['sticky_params'] ||= ActionController::Parameters.new
+      controller.session['sticky_params'] ||= {}
       if controller.params[name]
         fetch_from_params(name, session_param_name)
       elsif controller.session['sticky_params'][session_param_name]
@@ -41,7 +40,7 @@ module StickyParams
 
     def []=(name, value)
       session_param_name = "#{prefix}#{name}"
-      controller.session['sticky_params'] ||= ActionController::Parameters.new
+      controller.session['sticky_params'] ||= {}
       controller.session['sticky_params'][session_param_name] = controller.params[name] = value
     end
 
