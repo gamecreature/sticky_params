@@ -1,6 +1,6 @@
 # StickyParams
 
-A little gem that automaticly remembers the request parameters between requests without hassle.
+A little gem that automatically remembers the request parameters between requests without hassle.
 For example for remembering the filtering and sorting of a list, when switching to a detail screen and back.
 
 ```ruby
@@ -14,8 +14,10 @@ end
 
 ## Release Notes 2.1
 
+Release 2.1.1, Add the method `with_prefix`, to invoke a block of code with another sticky_params prefix.
+It also deduplicates code by moving it to the `StickyParams::BaseParams` class.
 
-Release 2.1, Sticky Params doesn't put ActionController::Parameters in a sesssion anymore.
+Release 2.1, Sticky Params doesn't put ActionController::Parameters in a session anymore.
 ActionController::Parameters were put directly into a session in 2.0. Which worked in rails < 7.
 In rails 7 this results in a `TypeError (can't dump IO)` when the session data is serialized.
 
@@ -23,7 +25,7 @@ Release 2.0, uses ActionController::Parameters instead of hashes.
 This enable the usage of the strong parameter permit construct.
 (In other words, sticky_params will work just like normal params)
 
-To get the 1.0 behaviour, you can add the following to your ApplicationController.
+To get the 1.0 behavior, you can add the following to your ApplicationController.
 
 ```ruby
   def sticky_params

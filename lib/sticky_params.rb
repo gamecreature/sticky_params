@@ -1,5 +1,6 @@
 require "sticky_params/version"
 require "sticky_params/railtie" if defined?(Rails)
+require "sticky_params/base_params"
 require "sticky_params/session_params"
 require "sticky_params/strong_session_params"
 
